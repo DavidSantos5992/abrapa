@@ -1,0 +1,14 @@
+{
+  "name": "ABRAPA Jundiaí",
+  "short_name": "ABRAPA",
+  "icons": [
+    {
+      "src": "/abrapa-logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ba1c1c",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
