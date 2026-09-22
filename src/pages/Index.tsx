@@ -35,7 +35,7 @@ const Index = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-28 md:justify-center md:pt-20">
           <div className="absolute inset-0 z-0 bg-white">
             <img
               src={heroImage}
