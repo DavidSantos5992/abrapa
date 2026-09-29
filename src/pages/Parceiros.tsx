@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import type { LucideIcon } from "lucide-react";
 import { Building2, Mail, User, Phone, FileText, CheckCircle2, Heart, Users, Handshake } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -57,7 +56,7 @@ const Parceiros = () => {
     {nome:"Magalu",logo:"magaluParceiros.png"}, {nome:"Liz",logo:"lizPaceiros.png"},
     {nome:"Covabra",logo:"covabraParceiros.png"}, {nome:"SESC",logo:"sescParceiros.png"},
     {nome:"Klabin",logo:"klabinParceiros.png"}, {nome:"The One IT",logo:"BannerToia.png"}
-  ].map((partner,index) => ({...partner,id:index+1,logo:"/partners/"+partner.logo,categoria:"Parceiro",tipo:"Parceiro",descricao:"Parceiro apresentado pela ABRAPA em seu site oficial.",website:"",icon:Building2}));
+  ].map((partner,index) => ({...partner,id:index+1,logo:"/partners/"+partner.logo}));
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -102,7 +101,7 @@ const Parceiros = () => {
                 Parceiros apresentados pela ABRAPA
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
-                {parceirosOficiais.map(partner => <div key={partner.id} className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 text-center"><img src={partner.logo} alt={partner.nome} className="h-8 w-auto mx-auto mb-2 object-contain" /><div className="font-semibold text-sm text-red-800">{partner.nome}</div><div className="text-xs text-red-600">Parceiro</div></div>)}
+                {parceirosOficiais.map(partner => <div key={partner.id} className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 text-center"><img src={partner.logo} alt={partner.nome} className="h-24 w-auto mx-auto mb-2 object-contain [clip-path:inset(1px)]" /><div className="font-semibold text-sm text-red-800">{partner.nome}</div></div>)}
               </div>
             </div>
             {/* Estatísticas dos Parceiros */}
@@ -152,19 +151,13 @@ const Parceiros = () => {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Foto do Espaço */}
+                <div className="max-w-3xl mx-auto">
                   <div className="rounded-2xl overflow-hidden shadow-medium">
                     <img
                       src={move}
                       alt="Semana Move no SESC — registro da ABRAPA"
                       className="w-full h-full object-cover hover:scale-105 transition-smooth"
                     />
-                  </div>
-
-                  {/* Vídeo do Assistido */}
-                  <div className="rounded-2xl overflow-hidden shadow-medium bg-black">
-                    <img src={move} alt="Registro da participação na Semana Move no SESC divulgado pela ABRAPA" className="w-full h-full object-contain" />
                   </div>
                 </div>
 
@@ -249,74 +242,6 @@ const Parceiros = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Grid de Parceiros */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {parceirosOficiais.map((parceiro, index) => (
-                <div
-                  key={parceiro.id}
-                  className="w-full min-w-0 bg-card rounded-2xl p-6 shadow-soft hover:shadow-strong transition-smooth animate-slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  <div className="flex min-w-0 items-start gap-4">
-                    <div className={`
-                      w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden
-                      ${!parceiro.logo ? (
-                        parceiro.categoria === 'Saúde' ? 'bg-red-100 text-red-600' :
-                        parceiro.categoria === 'Empresarial' ? 'bg-red-100 text-red-600' :
-                        parceiro.categoria === 'Governamental' ? 'bg-green-100 text-green-600' :
-                        parceiro.categoria === 'Sociedade Civil' ? 'bg-yellow-100 text-yellow-600' :
-                        'bg-purple-100 text-purple-600'
-                      ) : 'bg-white border border-gray-200'}
-                    `}>
-                      {parceiro.logo ? (
-                        <img
-                          src={parceiro.logo}
-                          alt={`Logo ${parceiro.nome}`}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <parceiro.icon className="w-7 h-7" />
-                      )}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex min-w-0 flex-col items-start gap-2 mb-2 sm:flex-row sm:justify-between">
-                        <h3 className="font-bold text-lg text-foreground leading-tight">
-                          {parceiro.nome}
-                        </h3>
-                        <span className={`
-                          text-xs px-2 py-1 rounded-full font-medium
-                          ${parceiro.tipo === 'Parceiro Estratégico' ? 'bg-primary/10 text-primary' :
-                            parceiro.tipo === 'Patrocinador' ? 'bg-green-100 text-green-700' :
-                            parceiro.tipo === 'Apoiador' ? 'bg-red-100 text-red-700' :
-                            'bg-gray-100 text-gray-700'}
-                        `}>
-                          {parceiro.tipo}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-medium px-2 py-1 bg-muted rounded-full">
-                          {parceiro.categoria}
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {parceiro.descricao}
-                      </p>
-                      {parceiro.website && (
-                        <a
-                          href={parceiro.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block mt-3 text-primary text-sm font-medium hover:underline"
-                        >
-                          Visitar site →
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
 
             {/* Chamada para Novos Parceiros */}

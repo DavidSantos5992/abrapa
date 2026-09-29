@@ -1,5 +1,5 @@
 import { Users, Target, Heart, Award, Quote, MapPin, Navigation } from "lucide-react";
-import teamImage from "@/assets/abrapa-official/natal.png";
+import teamImage from "@/assets/abrapa-official/acao-comunitaria.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedCounter from "@/components/AnimatedCounter";
@@ -59,7 +59,7 @@ const Sobre = () => {
               <div className="rounded-2xl overflow-hidden shadow-strong animate-scale-in">
                 <img
                   src={teamImage}
-                  alt="Registro do Projeto Natal divulgado pela ABRAPA"
+                  alt="Ação comunitária da ABRAPA com crianças e famílias"
                   className="w-full h-full object-cover"
                 />
               </div>

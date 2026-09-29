@@ -7,7 +7,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/abrapa-official/banner-home.png";
-import communityEvent from "@/assets/abrapa-official/natal.png";
+import communityEvent from "@/assets/abrapa-official/equipe-abrapa.png";
 import supportCare from "@/assets/abrapa-official/dia-criancas.png";
 
 const Index = () => {
@@ -116,7 +116,7 @@ const Index = () => {
                 <div className="rounded-2xl overflow-hidden shadow-medium">
                   <img
                     src={communityEvent}
-                    alt="Evento comunitário da ABRAPA"
+                    alt="Equipe da ABRAPA em ação comunitária"
                     className="w-full h-64 object-cover hover:scale-105 transition-smooth"
                   />
                 </div>

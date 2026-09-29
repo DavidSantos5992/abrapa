@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Filter, X, ChevronLeft, ChevronRight, Download, Share2, Heart, Users, Image as ImageIcon } from "lucide-react";
+import { Calendar, LayoutGrid, ChevronLeft, ChevronRight, Download, Share2, Heart, Users, Image as ImageIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -12,6 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { childrensDayCampaigns } from "@/data/childrensDayCampaigns";
+import { timelessCampaigns } from "@/data/timelessCampaigns";
 
 import catarina from "@/assets/abrapa-official/catarina.png";
 import laura from "@/assets/abrapa-official/laura.png";
@@ -30,7 +32,37 @@ interface GalleryImage {
   tags: string[];
 }
 
-const galleryImages: GalleryImage[] = [{id:1,src:natal,alt:"Material oficial da ABRAPA: Projeto Natal",title:"Projeto Natal",category:"Eventos",date:"",description:"A ABRAPA registra uma celebração de Natal com entrega de brinquedos, roupas, calçados, medicamentos e cestas básicas às crianças e famílias assistidas.",tags:["ABRAPA","solidariedade"]},{id:2,src:criancas,alt:"Material oficial da ABRAPA: Dia das Crianças",title:"Dia das Crianças",category:"Eventos",date:"",description:"A festa do Dia das Crianças reúne a solidariedade de amigos e contribuintes em uma celebração dedicada às crianças assistidas pela ABRAPA.",tags:["ABRAPA","solidariedade"]},{id:3,src:move,alt:"Material oficial da ABRAPA: Semana Move no SESC",title:"Semana Move no SESC",category:"Eventos",date:"",description:"A ABRAPA compartilha a participação de uma criança assistida na Semana Move no SESC, em uma atividade de inclusão pelo esporte.",tags:["ABRAPA","solidariedade"]},{id:4,src:catarina,alt:"Material oficial da ABRAPA: Projeto Catarina",title:"Projeto Catarina",category:"Projetos",date:"",description:"O Projeto Catarina é apresentado pela ABRAPA como uma iniciativa de apoio às necessidades de alimentação especial de uma criança e de sua família.",tags:["ABRAPA","solidariedade"]},{id:5,src:laura,alt:"Material oficial da ABRAPA: Projeto Laurinha",title:"Projeto Laurinha",category:"Projetos",date:"",description:"O Projeto Laurinha mobiliza solidariedade para apoiar uma criança com cardiopatia congênita e sua família, conforme apresentado no site da ABRAPA.",tags:["ABRAPA","solidariedade"]},{id:6,src:milena,alt:"Material oficial da ABRAPA: Projeto Milena",title:"Projeto Milena",category:"Projetos",date:"",description:"O Projeto Milena faz parte das iniciativas divulgadas pela ABRAPA para apoiar crianças com necessidades específicas e suas famílias.",tags:["ABRAPA","solidariedade"]}];
+const childrensDayGalleryImages: GalleryImage[] = childrensDayCampaigns.flatMap(({ year, title, category, description, images }) =>
+  images.map((src, index) => ({
+    id: Number(`${year}${String(index + 1).padStart(2, "0")}`),
+    src,
+    alt: `Registro da campanha ${title}, foto ${index + 1}`,
+    title: `${title} - Foto ${String(index + 1).padStart(2, "0")}`,
+    category,
+    date: year,
+    description,
+    tags: ["ABRAPA", category, year],
+  })),
+);
+
+const timelessGalleryImages: GalleryImage[] = timelessCampaigns.flatMap(({ title, category, description, images }, campaignIndex) =>
+  images.map((src, imageIndex) => ({
+    id: 100000 + campaignIndex * 1000 + imageIndex + 1,
+    src,
+    alt: `Registro da campanha ${title}, foto ${imageIndex + 1}`,
+    title: `${title} - Foto ${String(imageIndex + 1).padStart(2, "0")}`,
+    category,
+    date: "",
+    description,
+    tags: ["ABRAPA", category],
+  })),
+);
+
+const galleryImages: GalleryImage[] = [
+  ...childrensDayGalleryImages,
+  ...timelessGalleryImages,
+  {id:1,src:natal,alt:"Material oficial da ABRAPA: Projeto Natal",title:"Projeto Natal",category:"Eventos",date:"",description:"A ABRAPA registra uma celebração de Natal com entrega de brinquedos, roupas, calçados, medicamentos e cestas básicas às crianças e famílias assistidas.",tags:["ABRAPA","solidariedade"]},{id:2,src:criancas,alt:"Material oficial da ABRAPA: Dia das Crianças",title:"Dia das Crianças",category:"Eventos",date:"",description:"A festa do Dia das Crianças reúne a solidariedade de amigos e contribuintes em uma celebração dedicada às crianças assistidas pela ABRAPA.",tags:["ABRAPA","solidariedade"]},{id:3,src:move,alt:"Material oficial da ABRAPA: Semana Move no SESC",title:"Semana Move no SESC",category:"Eventos",date:"",description:"A ABRAPA compartilha a participação de uma criança assistida na Semana Move no SESC, em uma atividade de inclusão pelo esporte.",tags:["ABRAPA","solidariedade"]},{id:4,src:catarina,alt:"Material oficial da ABRAPA: Projeto Catarina",title:"Projeto Catarina",category:"Projetos",date:"",description:"O Projeto Catarina é apresentado pela ABRAPA como uma iniciativa de apoio às necessidades de alimentação especial de uma criança e de sua família.",tags:["ABRAPA","solidariedade"]},{id:5,src:laura,alt:"Material oficial da ABRAPA: Projeto Laurinha",title:"Projeto Laurinha",category:"Projetos",date:"",description:"O Projeto Laurinha mobiliza solidariedade para apoiar uma criança com cardiopatia congênita e sua família, conforme apresentado no site da ABRAPA.",tags:["ABRAPA","solidariedade"]},{id:6,src:milena,alt:"Material oficial da ABRAPA: Projeto Milena",title:"Projeto Milena",category:"Projetos",date:"",description:"O Projeto Milena faz parte das iniciativas divulgadas pela ABRAPA para apoiar crianças com necessidades específicas e suas famílias.",tags:["ABRAPA","solidariedade"]},
+];
 
 const IMAGES_PER_PAGE = 12;
 const IMAGE_HASH_PREFIX = "#imagem-";
@@ -167,8 +199,9 @@ const Galeria = () => {
     if (!selectedImage) return;
 
     const link = document.createElement("a");
+    const extension = selectedImage.src.match(/\.([a-z0-9]+)(?:\?|$)/i)?.[1] ?? "jpg";
     link.href = selectedImage.src;
-    link.download = `${selectedImage.title.toLowerCase().replace(/ /g, "-")}.png`;
+    link.download = `${selectedImage.title.toLowerCase().replace(/ /g, "-")}.${extension}`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -234,42 +267,22 @@ const Galeria = () => {
       </section>
 
       {/* Filtros */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-gray-50 border-b">
         <h2 className="sr-only">Filtros da galeria</h2>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 justify-between"
+            className="grid grid-cols-1 gap-4 rounded-lg border bg-white p-5 shadow-md sm:grid-cols-2 lg:grid-cols-[auto_minmax(160px,190px)_minmax(240px,334px)_1fr] lg:items-end"
           >
-            <div className="flex items-center gap-4">
-              <Filter className="w-5 h-5 text-gray-600" />
-              <span className="font-semibold text-gray-900">Filtros:</span>
-            </div>
+            <Button onClick={resetFilters} className="w-full gap-2 sm:w-auto">
+              <LayoutGrid className="h-4 w-4" />
+              Ver todas
+            </Button>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <span id="category-label" className="sr-only">Filtrar por categoria</span>
-              <Select
-                value={selectedCategory}
-                onValueChange={(value) => {
-                  setSelectedCategory(value);
-                  setCurrentPage(1);
-                }}
-              >
-                <SelectTrigger className="w-48" aria-labelledby="category-label">
-                  <SelectValue placeholder="Categoria" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <span id="year-label" className="sr-only">Filtrar por ano</span>
+            <div className="space-y-2">
+              <span className="block text-sm font-semibold text-gray-800">Ano</span>
               <Select
                 value={selectedYear}
                 onValueChange={(value) => {
@@ -277,27 +290,42 @@ const Galeria = () => {
                   setCurrentPage(1);
                 }}
               >
-                <SelectTrigger className="w-32" aria-labelledby="year-label">
-                  <SelectValue placeholder="Ano" />
+                <SelectTrigger className="h-12 w-full" aria-label="Filtrar por ano">
+                  <SelectValue placeholder="Todos os anos" />
                 </SelectTrigger>
                 <SelectContent>
                   {years.map(year => (
                     <SelectItem key={year} value={year}>
-                      {year}
+                      {year === "Todos" ? "Todos os anos" : year}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-
-              {(selectedCategory !== "Todas" || selectedYear !== "Todos") && (
-                <Button variant="outline" onClick={resetFilters} className="gap-2">
-                  <X className="w-4 h-4" />
-                  Limpar
-                </Button>
-              )}
             </div>
 
-            <div className="text-sm text-gray-600" aria-live="polite">
+            <div className="space-y-2">
+              <span className="block text-sm font-semibold text-gray-800">Campanha</span>
+              <Select
+                value={selectedCategory}
+                onValueChange={(value) => {
+                  setSelectedCategory(value);
+                  setCurrentPage(1);
+                }}
+              >
+                <SelectTrigger className="h-12 w-full" aria-label="Filtrar por categoria">
+                  <SelectValue placeholder="Todas as campanhas" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map(category => (
+                    <SelectItem key={category} value={category}>
+                      {category === "Todas" ? "Todas as campanhas" : category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="font-semibold text-gray-600 sm:col-span-2 lg:col-span-1 lg:self-center lg:justify-self-end lg:pt-6" aria-live="polite">
               {filteredImages.length} {filteredImages.length === 1 ? 'foto encontrada' : 'fotos encontradas'}
             </div>
           </motion.div>
