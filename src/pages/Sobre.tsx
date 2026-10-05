@@ -46,13 +46,22 @@ const Sobre = () => {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    A ABRAPA é a Associação Brasileira de Apoio aos Portadores de Aids. Apoia pessoas em vulnerabilidade que vivem com HIV/AIDS e seus familiares em Jundiaí e região.
+                    A ABRAPA – Associação Brasileira de Apoio aos Portadores de Aids nasceu em 2004, com o propósito de acolher, apoiar e transformar a realidade de pessoas em situação de vulnerabilidade que vivem com HIV/AIDS e de seus familiares em Jundiaí e região.
                   </p>
                   <p>
-                    Promover qualidade de vida e dignidade, oferecendo apoio, assistência e combate ao preconceito a pessoas em vulnerabilidade em Jundiaí e região.
+                    Ao longo de 22 anos de história, nosso trabalho cresceu e ampliou seu alcance. Atualmente, além das pessoas que vivem com HIV/AIDS, a ABRAPA também acolhe crianças com diferentes patologias e suas famílias que se encontram em situação de vulnerabilidade social, oferecendo suporte de acordo com as necessidades de cada caso.
                   </p>
                   <p>
-                    A instituição é independente de organizações partidárias, governamentais ou religiosas e não tem fins econômicos. Seu apoio alcança pessoas de todas as faixas etárias.
+                    Por meio da solidariedade de parceiros, colaboradores e da comunidade, oferecemos assistência que contribui para a qualidade de vida, o bem-estar e a dignidade de nossos assistidos e de suas famílias.
+                  </p>
+                  <p>
+                    Também trabalhamos para combater o preconceito, promover a inclusão e proporcionar um ambiente de acolhimento, onde cada pessoa seja recebida com respeito, cuidado e sem julgamentos.
+                  </p>
+                  <p>
+                    A ABRAPA é uma instituição sem fins econômicos e independente de organizações partidárias, governamentais ou religiosas, atendendo pessoas de diferentes idades em Jundiaí e região.
+                  </p>
+                  <p>
+                    Mais do que oferecer assistência, acolhemos pessoas, fortalecemos famílias e cuidamos de histórias.
                   </p>
                 </div>
               </div>
