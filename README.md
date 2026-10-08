@@ -18,6 +18,9 @@ npm run build
 npm run lint
 ```
 
+Para configurar o feed do Instagram da home no Vercel, consulte
+[`docs/instagram-feed.md`](docs/instagram-feed.md).
+
 O conteúdo editorial e os dados de contato devem ser conferidos nas fontes
 oficiais antes de qualquer publicação: <https://abrapajundiai.org.br/> e
 <https://www.instagram.com/abrapa_jundiai/>.

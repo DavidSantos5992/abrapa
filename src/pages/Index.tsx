@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import DonateButton from "@/components/DonateButton";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import SEO from "@/components/SEO";
+import InstagramFeed from "@/components/InstagramFeed";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/abrapa-official/banner-home.png";
 import communityEvent from "@/assets/abrapa-official/equipe-abrapa.png";
@@ -261,6 +262,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <InstagramFeed />
 
         {/* CTA Section */}
         <section className="py-20 gradient-hero">
