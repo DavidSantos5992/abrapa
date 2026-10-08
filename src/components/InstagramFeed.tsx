@@ -7,8 +7,8 @@ type InstagramPost = {
   id: string;
   imageUrl: string;
   permalink: string;
-  caption?: string;
-  timestamp?: string | null;
+  caption: string;
+  timestamp: string | null;
 };
 
 async function fetchInstagramPosts(): Promise<InstagramPost[]> {
@@ -22,11 +22,11 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
   return Array.isArray(result.posts) ? result.posts.slice(0, 3) : [];
 }
 
-function getPostAltText(post: InstagramPost) {
-  const caption = post.caption?.replace(/\s+/g, " ").trim();
+function getPostAltText(post: InstagramPost, publishedAt: string) {
+  const caption = post.caption.replace(/\s+/g, " ").trim();
   return caption
-    ? `Publicação da ABRAPA no Instagram: ${caption.slice(0, 180)}`
-    : "Foto publicada pela ABRAPA no Instagram";
+    ? `Foto publicada pela ABRAPA no Instagram em ${publishedAt}: ${caption.slice(0, 180)}`
+    : `Foto publicada pela ABRAPA no Instagram em ${publishedAt}`;
 }
 
 function getPublishedAt(timestamp?: string | null) {
@@ -99,12 +99,11 @@ const InstagramFeed = () => {
                   href={post.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Ver publicação da ABRAPA no Instagram, publicada ${publishedAt}`}
                   className="group relative block aspect-square overflow-hidden rounded-2xl bg-background shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   <img
                     src={post.imageUrl}
-                    alt={getPostAltText(post)}
+                    alt={getPostAltText(post, publishedAt)}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
