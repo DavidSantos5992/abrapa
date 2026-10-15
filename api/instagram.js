@@ -91,7 +91,7 @@ export default async function handler(req, res) {
   }
 
   const mediaUrl = new URL(
-    `https://graph.instagram.com/${apiVersion}/${encodeURIComponent(instagramUserId)}/media`,
+    `https://graph.facebook.com/${apiVersion}/${encodeURIComponent(instagramUserId)}/media`,
   );
   mediaUrl.searchParams.set(
     "fields",

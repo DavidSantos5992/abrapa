@@ -4,16 +4,16 @@ A home busca as três publicações de foto mais recentes de `@abrapa_jundiai`, 
 
 ## Configuração necessária
 
-1. A conta do Instagram precisa ser profissional (Business ou Creator) e autorizar um aplicativo da Meta com a permissão `instagram_business_basic`.
+1. A conta do Instagram precisa ser profissional (Business ou Creator) e estar vinculada a uma Página do Facebook. O token de usuário do Facebook deve ter as permissões `instagram_basic`, `pages_show_list` e `pages_read_engagement` para essa Página.
 2. Configure estas variáveis no projeto Vercel, nos ambientes que serão usados:
 
-   - `INSTAGRAM_ACCESS_TOKEN`: token de usuário do Instagram com a permissão acima.
+   - `INSTAGRAM_ACCESS_TOKEN`: token de usuário do Facebook com as permissões acima. Apesar do nome da variável, a função consulta `graph.facebook.com`.
    - `INSTAGRAM_USER_ID`: identificador da conta profissional autorizada.
    - `INSTAGRAM_GRAPH_API_VERSION`: versão da API, opcional; o padrão é `v26.0`.
 
 3. Faça um novo deploy depois de adicionar ou trocar as variáveis. Nunca use o prefixo `VITE_` no token e nunca coloque o valor real no repositório.
 
-Tokens podem expirar ou perder autorização. Se o feed deixar de carregar, confira a validade do token e gere/renove a credencial no aplicativo Meta antes de atualizar a variável no Vercel.
+Tokens podem expirar ou perder autorização. O token atual de longa duração vence em 14 de dezembro de 2026; renove a credencial no aplicativo Meta e atualize a variável no Vercel antes dessa data.
 
 ## Desenvolvimento local
 
