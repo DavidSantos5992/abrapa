@@ -42,7 +42,7 @@ por teclado, compartilhamento, download e paginação da galeria foram preservad
 ## Contatos e dados bancários verificados
 
 - Rua Secundino Veiga, 119, Centro, Jundiaí — SP.
-- Telefone (11) 4521-1248; WhatsApp (11) 96496-8794.
+- Telefone (11) 4521-1248; WhatsApp (11) 92575-5898.
 - contato@abrapajundiai.org.br.
 - CNPJ 07.055.645/0001-70.
 - Itaú: agência 0796, conta 63.623-1.

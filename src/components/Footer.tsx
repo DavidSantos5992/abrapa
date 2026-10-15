@@ -90,11 +90,11 @@ const Footer = () => {
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
-                  href="tel:+5511964968794"
+                  href="tel:+5511925755898"
                   className="hover:text-primary transition-smooth"
                   title="Ligar para a ABRAPA"
                 >
-                  (11) 96496-8794
+                  (11) 92575-5898
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">

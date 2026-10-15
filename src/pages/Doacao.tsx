@@ -153,7 +153,7 @@ const Doacao = () => {
                     <div className="mt-3 p-3 bg-white rounded-lg border border-red-200">
                       <p className="text-xs text-red-700 font-medium">PIX copia e cola — Banco Itaú:</p>
                       <p className="break-all font-mono text-xs text-red-900 font-semibold">{donationPix}</p>
-                      <p className="text-xs text-red-600 mt-1">ABRAPA Jundiaí · CNPJ 07.055.645/0001-70</p><p className="text-xs text-red-600 mt-1">Itaú · Agência 0796 · Conta 63.623-1</p><p className="text-xs text-red-600 mt-1">PagSeguro · Agência 0001 · Conta 02001239-9</p><a className="mt-3 inline-block text-sm underline" href="https://wa.me/5511964968794" target="_blank" rel="noopener noreferrer">Tire dúvidas com a ABRAPA</a>
+                      <p className="text-xs text-red-600 mt-1">ABRAPA Jundiaí · CNPJ 07.055.645/0001-70</p><p className="text-xs text-red-600 mt-1">Itaú · Agência 0796 · Conta 63.623-1</p><p className="text-xs text-red-600 mt-1">PagSeguro · Agência 0001 · Conta 02001239-9</p><a className="mt-3 inline-block text-sm underline" href="https://wa.me/5511925755898" target="_blank" rel="noopener noreferrer">Tire dúvidas com a ABRAPA</a>
                     </div>
                   </div>
                 </div>

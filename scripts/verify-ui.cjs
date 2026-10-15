@@ -105,13 +105,13 @@ const assert = require('node:assert/strict');
     await page.getByLabel('Telefone', { exact: true }).fill('11999999999');
     await page.getByLabel('Mensagem', { exact: true }).fill('Mensagem de teste local, não enviada.');
     await page.getByRole('button', { name: 'Abrir WhatsApp', exact: true }).click();
-    assert((await page.evaluate(() => window.preparedContactUrl)).startsWith('https://wa.me/5511964968794?text='));
+    assert((await page.evaluate(() => window.preparedContactUrl)).startsWith('https://wa.me/5511925755898?text='));
     await page.goto(origin + '/contato');
     await page.getByLabel('Nome', { exact: true }).fill('Teste de interface');
     await page.getByLabel('E-mail', { exact: true }).fill('teste@example.com');
     await page.getByLabel('Mensagem', { exact: true }).fill('Teste local, não enviado.');
     await page.getByRole('button', { name: 'Abrir WhatsApp', exact: true }).click();
-    assert((await page.evaluate(() => window.preparedContactUrl)).startsWith('https://wa.me/5511964968794?text='));
+    assert((await page.evaluate(() => window.preparedContactUrl)).startsWith('https://wa.me/5511925755898?text='));
     assert.deepEqual(errors, []);
     console.log('PASS: seven routes, five widths, images, SEO, menu, gallery, dialogs, PIX and forms. No messages sent.');
   } finally {

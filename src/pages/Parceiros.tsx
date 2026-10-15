@@ -47,7 +47,7 @@ const Parceiros = () => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const message = `Olá, ABRAPA! Meu nome é ${values.nome}. E-mail: ${values.email}. Telefone: ${values.telefone}. ${values.mensagem}`;
-    window.open(`https://wa.me/5511964968794?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/5511925755898?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
     setSubmitted(true);
     toast.info("Mensagem preparada. Confirme o envio no WhatsApp.");
   };
